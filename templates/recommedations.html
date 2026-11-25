@@ -1,0 +1,191 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Recommendations | CoursePredict AI</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="recommendation-page">
+
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <a href="{% url 'index' %}" class="logo">
+                <span class="logo-icon">C</span>
+                CoursePredict<span class="logo-ai">AI</span>
+            </a>
+
+            <a href="{% url 'search_courses' %}" class="nav-button">
+                Search Courses <span>→</span>
+            </a>
+
+        </div>
+    </nav>
+
+    <main class="recommendation-section">
+
+        <div class="recommendation-container">
+
+            <div class="recommendation-heading">
+                <span class="section-label">PERSONALIZED COURSE DISCOVERY</span>
+
+                <h1>
+                    Your next learning
+                    <span>opportunities.</span>
+                </h1>
+
+                <p>
+                    Based on your selected course, here are other
+                    learning opportunities our recommendation model found.
+                </p>
+            </div>
+
+
+            <!-- SELECTED COURSE -->
+
+            <section class="selected-course-card">
+
+                <div class="selected-course-icon">✓</div>
+
+                <div class="selected-course-details">
+
+                    <span class="selected-label">YOUR SELECTED COURSE</span>
+
+                    <h2>{{ selected_course.course_title }}</h2>
+
+                    <p>
+                        Learning platform:
+                        <strong>{{ selected_course.course_organization }}</strong>
+                    </p>
+
+                    <span class="difficulty-label">
+                        {{ selected_course.course_difficulty }}
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- RECOMMENDATIONS -->
+
+            <div class="recommendation-list-heading">
+
+                <div>
+                    <span class="section-label">RECOMMENDED FOR YOU</span>
+                    <h2>Courses you may also like</h2>
+                    <p>
+                        Explore these courses based on their similarity
+                        to your selected course.
+                    </p>
+                </div>
+
+                <span class="recommendation-count">
+                    {{ recommendations|length }} courses
+                </span>
+
+            </div>
+
+
+            {% if recommendations %}
+
+                <div class="recommendation-grid">
+
+                    {% for course in recommendations %}
+
+                        <article class="recommendation-card">
+
+                            <div class="recommendation-card-top">
+
+                                <div class="recommendation-icon">✦</div>
+
+                                <span class="recommendation-number">
+                                    MATCH {{ forloop.counter }}
+                                </span>
+
+                            </div>
+
+                            <div class="recommendation-card-content">
+
+                                <h3>{{ course.course_title }}</h3>
+
+                                <div class="recommendation-platform">
+                                    <span>AVAILABLE ON</span>
+                                    <strong>{{ course.course_organization }}</strong>
+                                </div>
+
+                                <div class="recommendation-meta">
+
+                                    <span class="difficulty-label">
+                                        {{ course.course_difficulty }}
+                                    </span>
+
+                                    <span class="rating-label">
+                                        Rating:
+                                        <strong>
+                                            {{ course.course_rating|default:"N/A" }}
+                                        </strong>
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Add the actual platform URL here later -->
+                            <a href="#"
+                               class="platform-link"
+                               aria-label="Platform URL coming soon">
+                                Visit Platform <span>↗</span>
+                            </a>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="results-empty">
+                    <div class="results-empty-icon">⌕</div>
+                    <h3>No similar courses found</h3>
+                    <p>
+                        Try selecting another course to discover
+                        more learning opportunities.
+                    </p>
+                </div>
+
+            {% endif %}
+
+
+            <div class="recommendation-bottom">
+
+                <a href="{% url 'search_courses' %}"
+                   class="secondary-button recommendation-back">
+                    ← Search Another Course
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="footer results-footer">
+        <div class="footer-bottom">
+            <span>© 2026 CoursePredict AI. All rights reserved.</span>
+            <span>Discover something new.</span>
+        </div>
+    </footer>
+
+</body>
+</html>

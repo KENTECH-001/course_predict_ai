@@ -1,0 +1,129 @@
+/* RECOMMENDATION PAGE */
+
+.recommendation-container {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 30px 20px;
+}
+
+.recommendation-container > h1 {
+    color: #172554;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.recommendation-container > p {
+    color: #64748b;
+    margin-bottom: 35px;
+}
+
+.selected-course {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    padding: 25px;
+    border-radius: 14px;
+    margin-bottom: 40px;
+}
+
+.selected-course h2 {
+    color: #1d4ed8;
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.selected-course h3 {
+    color: #172554;
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.selected-course p {
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.selected-course span,
+.recommendation-card span {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.recommendation-container > h2 {
+    color: #172554;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.recommendation-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.recommendation-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 24px;
+    transition: 0.3s ease;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.recommendation-card h3 {
+    color: #172554;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.recommendation-card p {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.course-rating {
+    color: #475569;
+    font-size: 14px;
+    margin-top: 18px;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 13px 20px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 9px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.back-button:hover {
+    background: #1d4ed8;
+}
+
+@media (max-width: 600px) {
+    .recommendation-container {
+        margin: 30px auto;
+        padding: 20px 15px;
+    }
+
+    .recommendation-container > h1 {
+        font-size: 27px;
+    }
+
+    .recommendation-list {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,157 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Courses | CoursePredict AI</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="course-results-page">
+
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <a href="{% url 'index' %}" class="logo">
+                <span class="logo-icon">C</span>
+                CoursePredict<span class="logo-ai">AI</span>
+            </a>
+
+            <a href="{% url 'index' %}" class="nav-button">
+                Back to Home <span>→</span>
+            </a>
+
+        </div>
+    </nav>
+
+    <main class="results-section">
+
+        <div class="results-container">
+
+            <div class="results-heading">
+                <span class="section-label">COURSE DISCOVERY</span>
+
+                <h1>
+                    Find the right course.
+                    <span>Explore new possibilities.</span>
+                </h1>
+
+                <p>
+                    Search through available courses and select one
+                    to discover similar learning opportunities.
+                </p>
+            </div>
+
+            <form method="GET"
+                  action="{% url 'search_courses' %}"
+                  class="results-search">
+
+                <span class="results-search-icon">⌕</span>
+
+                <input
+                    type="text"
+                    name="keyword"
+                    placeholder="What would you like to learn?"
+                    value="{{ keyword }}"
+                    required
+                >
+
+                <button type="submit">
+                    Search Courses <span>→</span>
+                </button>
+
+            </form>
+
+            {% if keyword %}
+
+                <div class="results-subheading">
+                    <div>
+                        <span class="section-label">YOUR SEARCH RESULTS</span>
+                        <h2>Courses matching "{{ keyword }}"</h2>
+                    </div>
+
+                    <span class="results-count">
+                        {{ matching_courses|length }} results
+                    </span>
+                </div>
+
+                {% if matching_courses %}
+
+                    <div class="results-grid">
+
+                        {% for course in matching_courses %}
+
+                            <article class="result-card">
+
+                                <div class="result-card-top">
+                                    <div class="result-icon">✦</div>
+                                    <span class="result-number">
+                                        COURSE {{ forloop.counter }}
+                                    </span>
+                                </div>
+
+                                <div class="result-card-content">
+
+                                    <h3>{{ course.course_title }}</h3>
+
+                                    <div class="result-platform">
+                                        <span>LEARNING PLATFORM</span>
+                                        <strong>{{ course.organization }}</strong>
+                                    </div>
+
+                                    <span class="difficulty-label">
+                                        {{ course.difficulty }}
+                                    </span>
+
+                                </div>
+
+                                <a href="{% url 'recommend_courses' course.course_id %}"
+                                   class="result-action">
+                                    Explore Similar Courses <span>→</span>
+                                </a>
+
+                            </article>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <div class="results-empty">
+                        <div class="results-empty-icon">⌕</div>
+                        <h3>No matching courses found</h3>
+                        <p>
+                            Try another course name or use a different keyword.
+                        </p>
+                    </div>
+
+                {% endif %}
+
+            {% endif %}
+
+            <div class="results-footer-note">
+                <span>✦</span>
+                Discover courses that match your learning interests.
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="footer results-footer">
+        <div class="footer-bottom">
+            <span>© 2026 CoursePredict AI. All rights reserved.</span>
+            <span>Discover something new.</span>
+        </div>
+    </footer>
+
+</body>
+</html>

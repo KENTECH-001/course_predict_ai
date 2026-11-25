@@ -1,0 +1,818 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore learning categories and discover courses across different learning platforms with CoursePredict AI.">
+    <title>CoursePredict AI | Discover Your Next Skill</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <a href="{% url 'index' %}" class="logo">
+                <span class="logo-icon">C</span>
+                CoursePredict<span class="logo-ai">AI</span>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#courses">Explore Courses</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#about">About</a>
+            </div>
+
+            <a href="#courses" class="nav-button">
+                Get Started <span>→</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">
+                ☰
+            </button>
+
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-container">
+
+            <div class="hero-content">
+
+                <div class="hero-tag">
+                    <span class="pulse"></span>
+                    DISCOVER NEW LEARNING POSSIBILITIES
+                </div>
+
+                <h1>
+                    Discover Skills.
+                    <span>Explore Possibilities.</span>
+                    Shape Your Future.
+                </h1>
+
+                <p>
+                    Your next skill could open a new door. Explore different
+                    learning categories, discover available platforms and
+                    find an area that inspires you to grow.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#courses" class="primary-button">
+                        Explore Categories <span>→</span>
+                    </a>
+
+                    <a href="#how-it-works" class="secondary-button">
+                        How It Works <span>↗</span>
+                    </a>
+                </div>
+
+                <div class="hero-note">
+                    <span>✓</span> Explore learning categories
+                    <span>✓</span> Discover available platforms
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="visual-orbit orbit-one"></div>
+                <div class="visual-orbit orbit-two"></div>
+                <div class="visual-glow"></div>
+
+                <div class="main-visual-card">
+
+                    <div class="visual-top">
+                        <span class="visual-dot"></span>
+                        <span class="visual-dot"></span>
+                        <span class="visual-dot"></span>
+                        <span class="visual-label">YOUR LEARNING SPACE</span>
+                    </div>
+
+                    <div class="brain-icon">✦</div>
+
+                    <span class="visual-small-label">A WORLD OF KNOWLEDGE</span>
+
+                    <h3>Ideas become<br>possibilities.</h3>
+
+                    <p>
+                        Explore an area of interest and discover
+                        where your learning journey can take you.
+                    </p>
+
+                    <div class="visual-tags">
+                        <span>Technology</span>
+                        <span>Business</span>
+                        <span>Science</span>
+                    </div>
+
+                    <div class="visual-bottom">
+                        <span>Start with curiosity</span>
+                        <span class="visual-star">✦</span>
+                    </div>
+
+                </div>
+
+                <div class="floating-card card-one">
+                    <div class="floating-icon purple">⌘</div>
+                    <div>
+                        <strong>Explore Technology</strong>
+                        <small>Discover new skills</small>
+                    </div>
+                </div>
+
+                <div class="floating-card card-two">
+                    <div class="floating-icon green">↗</div>
+                    <div>
+                        <strong>Keep Discovering</strong>
+                        <small>More learning possibilities</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-decoration decoration-one"></div>
+        <div class="hero-decoration decoration-two"></div>
+
+    </section>
+
+
+    <!-- INTRODUCTION STRIP -->
+    <section class="intro-strip">
+        <div class="intro-container">
+
+            <div class="intro-item">
+                <span class="intro-icon">◎</span>
+                <div>
+                    <strong>Explore</strong>
+                    <small>Different areas of knowledge</small>
+                </div>
+            </div>
+
+            <div class="intro-divider"></div>
+
+            <div class="intro-item">
+                <span class="intro-icon">◇</span>
+                <div>
+                    <strong>Discover</strong>
+                    <small>Learning platforms and options</small>
+                </div>
+            </div>
+
+            <div class="intro-divider"></div>
+
+            <div class="intro-item">
+                <span class="intro-icon">✦</span>
+                <div>
+                    <strong>Grow</strong>
+                    <small>Build knowledge and skills</small>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- COURSES -->
+    <section class="courses-section" id="courses">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">EXPLORE CATEGORIES</span>
+
+                    <h2>
+                        What would you like
+                        <span>to learn?</span>
+                    </h2>
+
+                    <p>
+                        Browse the available learning categories.
+                        Choose an area that interests you and start exploring.
+                    </p>
+                </div>
+
+                <div class="course-count">
+                    <strong>{{ courses|length }}</strong>
+                    <span>Available Categories</span>
+                </div>
+
+            </div>
+
+
+            <div class="course-toolbar">
+
+    <form class="search-box"
+          method="GET"
+          action="{% url 'search_courses' %}">
+
+        <span class="search-icon">⌕</span>
+
+        <input
+            type="text"
+            id="courseSearch"
+            name="keyword"
+            placeholder="Search for a course..."
+            aria-label="Search courses"
+            required
+        >
+
+        <button type="submit" class="search-shortcut">
+            SEARCH
+        </button>
+
+    </form>
+
+    <span class="selection-info" id="selectionInfo">
+        No category selected
+    </span>
+
+</div>
+            <!-- COURSE CARDS -->
+            <div class="course-grid" id="courseGrid">
+
+                {% for course in courses %}
+
+                <div class="course-card {% if forloop.counter > 10 %}extra-course hidden{% endif %}"
+                     data-name="{{ course.name|lower }}"
+                     data-course="{{ course.name }}"
+                     tabindex="0"
+                     role="button"
+                     aria-label="Select {{ course.name }}">
+
+                    <div class="course-card-top">
+
+                        <div class="course-icon icon-{{ forloop.counter }}">
+                            {% if course.name == 'Data' %}
+                                ◈
+                            {% elif course.name == 'Management' %}
+                                ▦
+                            {% elif course.name == 'Science' %}
+                                ⚛
+                            {% elif course.name == 'Business' %}
+                                ◫
+                            {% elif course.name == 'Learning' %}
+                                ▤
+                            {% elif course.name == 'Health' %}
+                                ♡
+                            {% elif course.name == 'Python' %}
+                                Py
+                            {% elif course.name == 'Fundamentals' %}
+                                ◉
+                            {% elif course.name == 'Design' %}
+                                ✎
+                            {% elif course.name == 'Cloud' %}
+                                ☁
+                            {% else %}
+                                ✦
+                            {% endif %}
+                        </div>
+
+                        <span class="course-arrow">↗</span>
+
+                    </div>
+
+                    <div class="course-card-content">
+                        <h3>{{ course.name }}</h3>
+
+                        <p>
+                            Explore learning opportunities in
+                            {{ course.name }}.
+                        </p>
+                    </div>
+
+                    <div class="course-card-footer">
+
+                        <span>
+                            <strong>{{ course.platforms }}</strong>
+                            platforms
+                        </span>
+
+                        <span class="select-indicator">Select +</span>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="empty-state hidden" id="emptyState">
+                <div>⌕</div>
+                <h3>No categories found</h3>
+                <p>Try searching for another category.</p>
+            </div>
+
+
+            <div class="view-all-container">
+                <button id="viewAllBtn" class="view-all-button">
+                    View All Categories <span>↓</span>
+                </button>
+            </div>
+
+
+            <div class="selection-panel hidden" id="selectionPanel">
+
+                <div>
+                    <span>YOUR SELECTED CATEGORY</span>
+                    <h3 id="selectedCourseName"></h3>
+                </div>
+
+                <button id="continueBtn" class="primary-button">
+                    Continue <span>→</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LEARNING OPPORTUNITIES -->
+    <section class="opportunities-section">
+
+        <div class="section-container">
+
+            <div class="opportunities-heading">
+                <span class="section-label">EXPLORE MORE</span>
+
+                <h2>
+                    One interest.
+                    <span>Many possibilities.</span>
+                </h2>
+
+                <p>
+                    Learning can take many directions. Explore different
+                    fields and discover the knowledge available across
+                    different areas.
+                </p>
+            </div>
+
+            <div class="opportunities-grid">
+
+                <div class="opportunity-card opportunity-dark">
+                    <div class="opportunity-icon">⌘</div>
+                    <span>01 / TECHNOLOGY</span>
+                    <h3>Build your digital knowledge.</h3>
+                    <p>
+                        Explore programming, data, cloud computing
+                        and other technology-related categories.
+                    </p>
+                    <a href="#courses">Explore categories ↗</a>
+                    <div class="opportunity-decoration">⌘</div>
+                </div>
+
+                <div class="opportunity-card opportunity-light">
+                    <div class="opportunity-icon">◇</div>
+                    <span>02 / PROFESSIONAL GROWTH</span>
+                    <h3>Discover professional fields.</h3>
+                    <p>
+                        Find categories related to business, management,
+                        communication and professional development.
+                    </p>
+                    <a href="#courses">Explore categories ↗</a>
+                    <div class="opportunity-decoration">◇</div>
+                </div>
+
+                <div class="opportunity-card opportunity-teal">
+                    <div class="opportunity-icon">✦</div>
+                    <span>03 / KNOWLEDGE</span>
+                    <h3>Stay curious. Keep learning.</h3>
+                    <p>
+                        Explore science, design, health and other
+                        areas that can expand your knowledge.
+                    </p>
+                    <a href="#courses">Explore categories ↗</a>
+                    <div class="opportunity-decoration">✦</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+    <section class="how-section" id="how-it-works">
+
+        <div class="section-container">
+
+            <div class="center-heading">
+                <span class="section-label">A SIMPLE PROCESS</span>
+
+                <h2>How CoursePredict AI Works</h2>
+
+                <p>
+                    Start exploring your learning interests in
+                    just a few simple steps.
+                </p>
+            </div>
+
+
+            <div class="steps-grid">
+
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">⌕</div>
+                    <h3>Explore Categories</h3>
+                    <p>
+                        Browse through the available learning
+                        categories and discover different fields.
+                    </p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">◈</div>
+                    <h3>Select Your Interest</h3>
+                    <p>
+                        Choose the category that matches the area
+                        you want to explore.
+                    </p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">✦</div>
+                    <h3>Explore Learning Options</h3>
+                    <p>
+                        Continue to discover learning opportunities
+                        related to your selected category.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHY COURSEPREDICT -->
+    <section class="why-section">
+
+        <div class="section-container">
+
+            <div class="why-heading">
+                <span class="section-label">WHY COURSEPREDICT AI?</span>
+
+                <h2>
+                    Make your next learning
+                    <span>discovery easier.</span>
+                </h2>
+
+                <p>
+                    Finding a place to begin learning can be overwhelming.
+                    CoursePredict AI brings learning categories together
+                    in one place to make exploration simpler.
+                </p>
+            </div>
+
+            <div class="why-grid">
+
+                <div class="why-card">
+                    <div class="why-icon">◎</div>
+                    <h3>Easy Exploration</h3>
+                    <p>
+                        Browse categories without having to search
+                        through unrelated topics.
+                    </p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">◇</div>
+                    <h3>Multiple Platforms</h3>
+                    <p>
+                        Discover how many learning platforms
+                        are available for different categories.
+                    </p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">✦</div>
+                    <h3>Discover New Interests</h3>
+                    <p>
+                        Explore areas you may not have considered
+                        before and expand your interests.
+                    </p>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">⌕</div>
+                    <h3>Simple Search</h3>
+                    <p>
+                        Quickly find a category using the
+                        course search feature.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+
+        <div class="about-container">
+
+            <div class="about-content">
+                <span class="section-label">ABOUT COURSEPREDICT AI</span>
+
+                <h2>
+                    Learning begins
+                    <span>with discovery.</span>
+                </h2>
+
+                <p>
+                    CoursePredict AI is designed to make it easier
+                    for people to explore different learning categories
+                    and discover available opportunities across multiple
+                    learning platforms.
+                </p>
+
+                <p>
+                    Whether you are interested in technology,
+                    business, science or professional development,
+                    the first step is discovering what is available.
+                </p>
+
+                <a href="#courses" class="primary-button">
+                    Start Exploring <span>→</span>
+                </a>
+            </div>
+
+
+            <div class="about-visual">
+
+                <div class="about-circle circle-one"></div>
+                <div class="about-circle circle-two"></div>
+                <div class="about-circle circle-three"></div>
+
+                <div class="about-symbol">✦</div>
+
+                <div class="about-caption">
+                    <strong>Discover. Explore. Grow.</strong>
+                    <span>Your next learning journey starts here.</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+    <section class="cta-section">
+
+        <div class="cta-content">
+
+            <span class="cta-label">YOUR NEXT STEP STARTS HERE</span>
+
+            <h2>
+                Curious about
+                <span>what you can learn?</span>
+            </h2>
+
+            <p>
+                Explore available categories and find an area
+                that inspires your next learning journey.
+            </p>
+
+            <a href="#courses" class="cta-button">
+                Explore Learning Categories <span>→</span>
+            </a>
+
+        </div>
+
+        <div class="cta-decoration cta-decoration-one"></div>
+        <div class="cta-decoration cta-decoration-two"></div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-main">
+
+                <a href="#home" class="logo footer-logo">
+                    <span class="logo-icon">C</span>
+                    CoursePredict<span class="logo-ai">AI</span>
+                </a>
+
+                <p>
+                    Discover learning opportunities.
+                    Explore your interests. Build your future.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+                <strong>Explore</strong>
+                <a href="#courses">Categories</a>
+                <a href="#how-it-works">How It Works</a>
+            </div>
+
+            <div class="footer-links">
+                <strong>Platform</strong>
+                <a href="#about">About Us</a>
+                <a href="#home">Back to Top ↑</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 CoursePredict AI. All rights reserved.</span>
+            <span>Discover something new.</span>
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        const courseCards = document.querySelectorAll('.course-card');
+        const searchInput = document.getElementById('courseSearch');
+
+        const viewAllBtn = document.getElementById('viewAllBtn');
+        const emptyState = document.getElementById('emptyState');
+
+        const selectionInfo = document.getElementById('selectionInfo');
+        const selectionPanel = document.getElementById('selectionPanel');
+
+        const selectedCourseName = document.getElementById('selectedCourseName');
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        let selectedCourse = null;
+        let showingAll = false;
+
+
+        // SELECT A COURSE
+
+        function selectCourse(card) {
+
+            courseCards.forEach(item => {
+                item.classList.remove('selected');
+            });
+
+            card.classList.add('selected');
+
+            selectedCourse = card.dataset.course;
+
+            selectedCourseName.textContent = selectedCourse;
+            selectionInfo.textContent = 'Selected: ' + selectedCourse;
+
+            selectionPanel.classList.remove('hidden');
+        }
+
+
+        courseCards.forEach(card => {
+
+            card.addEventListener('click', () => {
+                selectCourse(card);
+            });
+
+            card.addEventListener('keydown', event => {
+
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    selectCourse(card);
+                }
+
+            });
+
+        });
+
+
+        // VIEW ALL COURSES
+
+        viewAllBtn.addEventListener('click', () => {
+
+            showingAll = !showingAll;
+
+            courseCards.forEach((card, index) => {
+
+                if (index >= 10) {
+                    card.classList.toggle('hidden', !showingAll);
+                }
+
+            });
+
+            viewAllBtn.innerHTML = showingAll
+                ? 'Show Less <span>↑</span>'
+                : 'View All Categories <span>↓</span>';
+
+        });
+
+
+        // SEARCH COURSES
+
+        searchInput.addEventListener('input', () => {
+
+            const searchValue = searchInput.value.toLowerCase().trim();
+
+            let visibleCount = 0;
+
+            courseCards.forEach((card, index) => {
+
+                const matches = card.dataset.name.includes(searchValue);
+
+                const shouldShow = matches && (
+                    showingAll ||
+                    searchValue !== '' ||
+                    index < 10
+                );
+
+                card.classList.toggle('hidden', !shouldShow);
+
+                if (shouldShow) {
+                    visibleCount++;
+                }
+
+            });
+
+            emptyState.classList.toggle('hidden', visibleCount !== 0);
+
+            viewAllBtn.classList.toggle(
+                'hidden',
+                searchValue !== '' || courseCards.length <= 10
+            );
+
+        });
+
+
+        // CONTINUE BUTTON
+
+        // CONTINUE BUTTON
+
+            document.getElementById('continueBtn').addEventListener('click', () => {
+
+            if (!selectedCourse) {
+                return;}
+
+            window.location.href =
+            "{% url 'search_courses' %}?keyword=" +
+            encodeURIComponent(selectedCourse);
+});
+
+
+        // MOBILE NAVIGATION
+
+        menuToggle.addEventListener('click', () => {
+
+            const isOpen = navLinks.classList.toggle('active');
+
+            menuToggle.setAttribute('aria-expanded', isOpen);
+
+            menuToggle.textContent = isOpen ? '✕' : '☰';
+
+        });
+
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+
+            link.addEventListener('click', () => {
+
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰';
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
