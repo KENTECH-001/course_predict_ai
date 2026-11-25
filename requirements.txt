@@ -3,4 +3,4 @@ joblib
 numpy
 pandas
 whitenoise
-python-decouple
+python-dotenv
